@@ -1,16 +1,15 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
-const https = require('https');
 const port = 8080;
 
 const app = express();
-app.use(express.static('../dist/drives'));
+app.use('/',express.static('dist'));
 app.set('view engine', 'pug');
 
 
 app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: __dirname })
+    res.sendFile(path.resolve('./dist/index.html'))
 });
 
 var httpServer = http.createServer(app);
