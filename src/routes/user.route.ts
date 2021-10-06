@@ -6,7 +6,7 @@ class UserRoute {
 
         const routePrefix = '/user';
 
-        router.route(`${routePrefix}`)
+        router.route(`${routePrefix}/:userId`)
             .get(UserExpress.getUserData);
 
     }
