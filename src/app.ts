@@ -21,37 +21,40 @@ const path = require('path');
 import * as express from 'express';
 import { Routes } from './routes';
 import * as bodyParser from 'body-parser';
-class Server {
+class App {
     app: express.Application;
 
     constructor() {
         console.log('Starting server...');
         this.app = express();
         this.config();
-        this.startRoutes();
+        this.routes();
     }
 
     private config() {
-        this.app.use(express.static('./dist'));
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
 
-        this.app.all('*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-            // console.log('TODO: need to handle authentication requests')
-            next();
-        });
+        this.app.use(express.static('./dist'));
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(bodyParser.json());
+        // this.app.all('*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+        //     // console.log('TODO: need to handle authentication requests')
+        //     next();
+        // });
 
     }
 
-    private startRoutes() {
+    private routes() {
         const router: express.Router = express.Router();
         Routes.init(router);
         this.app.use('/api', router);
 
-        this.app.get('/*', (req, res) => {
+        this.app.get('*', (req, res) => {
+            console.log(res);
             res.sendFile(path.resolve('./dist/index.html'));
         })
 
+
+
     }
 }
-export default new Server().app
+export default new App().app
