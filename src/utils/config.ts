@@ -1,8 +1,9 @@
 import * as path from 'path';
 import * as dotenv from 'dotenv';
+import chalk from 'chalk';
 
 if (process.env.NODE_ENV !== 'production') {
-    const envFile = path.resolve(__dirname + '/../../../.env');
+    const envFile = path.resolve(__dirname + '/../.env');
     dotenv.config({ path: envFile });
 }
 
@@ -13,3 +14,13 @@ export default {
     backendHost: process.env.backendHost,
     backendPort: process.env.backendPort
 };
+
+if (!process.env.backendProtocol) {
+    console.log(chalk.red(`[MOOV] Failed to read env file!`));
+    console.log(chalk.yellow(`[MOOV] path is:` + __dirname + '/../.env'));
+    console.log(chalk.yellow(`[MOOV] envFile is:` + path.resolve(__dirname + '/../.env')));
+
+} else {
+    console.log(chalk.green(`[MOOV] Successfully read env file.`));
+    console.log(chalk.green(`[MOOV] Debug level is: ${process.env.WINSTON_LOG_LEVEL}`));
+}

@@ -22,6 +22,7 @@ const path = require('path');
 import express, { Request, Response } from 'express';
 import { Routes } from './routes';
 import * as bodyParser from 'body-parser';
+import { loggers } from 'winston';
 class App {
     app: express.Application;
 
@@ -48,7 +49,6 @@ class App {
         this.app.use('/api', router);
 
         this.app.get('*', (req: Request, res: Response) => {
-            console.log(res);
             res.sendFile(path.resolve('./dist/index.html'));
         })
 

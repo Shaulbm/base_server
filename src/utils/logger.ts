@@ -65,7 +65,7 @@ export class WinstonLogger {
         const message: string = WinstonLogger._executePredicate(messageOrPredicate);
         // const xRequestId: string = this.getXRequestId();
         // const formatted = `[${xRequestId}] ${message}`;
-        const formatted = `${message}`;
+        const formatted = `[MOOV] ${message}`;
         // const noCRLF = validator.blacklist(formatted, '\r\n');
         // return validator.escape(noCRLF);
         return formatted;
