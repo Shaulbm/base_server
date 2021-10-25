@@ -8,7 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 export default {
     port: process.env.serverPort || 8080,
-    backendTimeout: process.env.backendTimeout,
+    backendTimeout: Number(process.env.backendTimeout),
     backendProtocol: process.env.backendProtocol,
     backendHost: process.env.backendHost,
     backendPort: process.env.backendPort

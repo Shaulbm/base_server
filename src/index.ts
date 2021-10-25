@@ -1,6 +1,6 @@
 import app from './app'
 import config from './utils/config'
-import { MoovLogger } from './utils/logger';
+import { MoovLogger, prettify } from './utils/logger';
 import chalk from 'chalk';
 
 function setupMsListeneres() {

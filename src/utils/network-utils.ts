@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import config from '../../utils/config'
+import config from './config'
 
 export class NetworkUtils {
 
