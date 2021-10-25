@@ -18,7 +18,8 @@ const path = require('path');
 //     console.log("Server is listening on port " + port);
 // });
 
-import * as express from 'express';
+// const express = require('express');
+import express, { Request, Response } from 'express';
 import { Routes } from './routes';
 import * as bodyParser from 'body-parser';
 class App {
@@ -32,7 +33,6 @@ class App {
     }
 
     private config() {
-
         this.app.use(express.static('./dist'));
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
@@ -40,7 +40,6 @@ class App {
         //     // console.log('TODO: need to handle authentication requests')
         //     next();
         // });
-
     }
 
     private routes() {
@@ -48,7 +47,7 @@ class App {
         Routes.init(router);
         this.app.use('/api', router);
 
-        this.app.get('*', (req, res) => {
+        this.app.get('*', (req: Request, res: Response) => {
             console.log(res);
             res.sendFile(path.resolve('./dist/index.html'));
         })
@@ -56,5 +55,7 @@ class App {
 
 
     }
+
+
 }
 export default new App().app
