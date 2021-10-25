@@ -12,7 +12,11 @@ export default {
     backendTimeout: Number(process.env.backendTimeout),
     backendProtocol: process.env.backendProtocol,
     backendHost: process.env.backendHost,
-    backendPort: process.env.backendPort
+    backendPort: process.env.backendPort,
+    logging: {
+        outputFile: process.env.outputFile,
+        outputFileLogLevel: process.env.outputFileLogLevel
+    }
 };
 
 if (!process.env.backendProtocol) {

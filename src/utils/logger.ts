@@ -1,6 +1,7 @@
 import * as winston from 'winston';
 import { Request, Response } from 'express';
 import { performance } from 'perf_hooks';
+import config from './config';
 // import validator from 'validator';
 
 type LogPredicate = () => string;
@@ -135,7 +136,11 @@ export const _logger: winston.Logger = winston.createLogger({
         winston.format.printf(({ level, timestamp, message }) => `[${level.toUpperCase()}] [${timestamp}]\t${message}`)
     ),
     level: process.env.WINSTON_LOG_LEVEL || 'info',
-    transports: [new winston.transports.Console()]
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: config.logging.outputFile, level: config.logging.outputFileLogLevel }),
+    ]
+
 });
 
 // export const MoovLogger = new WinstonLogger(_logger, true);
