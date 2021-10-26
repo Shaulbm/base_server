@@ -6,8 +6,7 @@ export class UserExpress {
     static async getUserData(req: Request, res: Response, next: NextFunction) {
         MoovLogger.debug('user is returned');
         const userId = req.params.userId;
-        const userEmail = 'dummy@email.com';
-        const userData: PersonalUserData = await UserService.getUserDataById(userId, userEmail, req);
+        const userData: PersonalUserData = await UserService.getUserDataById(userId, req);
         res.send(userData);
     }
 }
